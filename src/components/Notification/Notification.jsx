@@ -1,10 +1,10 @@
 //IMPORT
 import { useSelector } from 'react-redux';
 //SELECTORS
-import { getContacts } from '../../redux/selectors';
+import { selectContacts } from '../../redux/selectors';
 
 const Notification = () => {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   return (
     <>
       {!contacts.length && (

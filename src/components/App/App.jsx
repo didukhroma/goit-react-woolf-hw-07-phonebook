@@ -6,13 +6,29 @@ import Container from 'components/Container';
 import Notification from 'components/Notification';
 //STYLES
 import { StyledMainTitle, StyledTitle } from './App.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectError, selectIsLoading } from '../../redux/selectors';
+import { useEffect } from 'react';
+import { fetchContacts } from '../../redux/operations';
+import ErrorMessage from 'components/ErrorMessage';
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  const isLoading = useSelector(selectIsLoading);
+  const errorMessage = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
   return (
     <Container>
-      <StyledMainTitle>Phonebook</StyledMainTitle>
+      {isLoading && <h1>Loading ...</h1>}
+      <ErrorMessage />
+      {!errorMessage && <StyledMainTitle>Phonebook</StyledMainTitle>}
       <ContactForm />
-      <StyledTitle>Contacts</StyledTitle>
+      {!errorMessage && <StyledTitle>Contacts</StyledTitle>}
       <Filter />
       <ContactsList />
       <Notification />
