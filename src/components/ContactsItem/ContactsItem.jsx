@@ -5,14 +5,14 @@ import { StyledLi, StyledP, StyledSpan } from './ContactsItem.styled';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/operations';
 
-function ContactsItem({ name, number, id }) {
+function ContactsItem({ name, phone, id }) {
   const dispatch = useDispatch();
 
   return (
     <StyledLi>
       <StyledP>
         <StyledSpan>{`${name}:`}</StyledSpan>
-        <span>{number}</span>
+        <span>{phone}</span>
       </StyledP>
       <Button
         cbOnClick={() => dispatch(deleteContact(id))}

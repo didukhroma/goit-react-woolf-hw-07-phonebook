@@ -16,8 +16,8 @@ function ContactsList() {
     <>
       {!errorMessage && (
         <StyledList>
-          {filteredContacts.map(({ id, name, number }) => (
-            <ContactsItem key={id} name={name} number={number} id={id} />
+          {filteredContacts.map(({ id, name, phone }) => (
+            <ContactsItem key={id} name={name} phone={phone} id={id} />
           ))}
         </StyledList>
       )}
