@@ -12,3 +12,8 @@ export const selectFilteredContacts = createSelector(
   [selectContacts, selectFilter],
   (contacts, filterQuery) => contactsFilter(contacts, filterQuery)
 );
+
+export const selectContactsLength = createSelector(
+  [selectContacts],
+  contacts => contacts.length
+);

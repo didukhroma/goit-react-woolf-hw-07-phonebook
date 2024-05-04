@@ -38,11 +38,11 @@ export const LOCAL_STORAGE_KEY = 'contacts';
  * @type {{ name: string; number: string; }}
  * @example const INITIAL_STATE_FORM = {
   name: '',
-  number: '',
+  phone: '',
 };
  *
  */
 export const INITIAL_STATE_FORM = {
   name: '',
-  number: '',
+  phone: '',
 };

@@ -1,7 +1,11 @@
 //IMPORT
 import { useDispatch, useSelector } from 'react-redux';
 //SELECTORS
-import { selectError, selectFilter } from '../../redux/selectors';
+import {
+  selectContactsLength,
+  selectError,
+  selectFilter,
+} from '../../redux/selectors';
 //ACTIONS
 import { updateFilter } from '../../redux/filterSlice';
 //STYLES
@@ -12,12 +16,13 @@ function Filter() {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
   const errorMessage = useSelector(selectError);
+  const contactsLength = useSelector(selectContactsLength);
 
   const handleChange = ({ target: { value } }) => dispatch(updateFilter(value));
 
   return (
     <>
-      {!errorMessage && (
+      {contactsLength > 1 && !errorMessage && (
         <StyledForm>
           <StyledTitle>Find contacts by name</StyledTitle>
           <StyledLabel>

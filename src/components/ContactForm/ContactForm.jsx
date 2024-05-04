@@ -59,10 +59,10 @@ export default function ContactForm() {
           <StyledLabel>
             <span>Number</span>
             <input
-              name="number"
+              name="phone"
               type="tel"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              value={contact.number}
+              value={contact.phone}
               onChange={handleChange}
               // eslint-disable-next-line no-useless-escape
               pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
