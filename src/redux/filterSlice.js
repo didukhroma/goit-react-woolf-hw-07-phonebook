@@ -1,6 +1,7 @@
+//IMPORT
 import { createSlice } from '@reduxjs/toolkit';
-
-const { INITIAL_STATE_APP } = require('settings/settings');
+//SETTINGS
+import { INITIAL_STATE_APP } from 'settings/settings';
 
 const filterSlice = createSlice({
   name: 'filter',

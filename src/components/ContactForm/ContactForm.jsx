@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from '@reduxjs/toolkit';
 //COMPONENTS
 import Button from 'components/Button';
 //SETTINGS
@@ -31,7 +30,7 @@ export default function ContactForm() {
       setContact(INITIAL_STATE_FORM);
       return;
     }
-    dispatch(addContact({ ...contact, id: nanoid() }));
+    dispatch(addContact(contact));
     setContact(INITIAL_STATE_FORM);
   };
 

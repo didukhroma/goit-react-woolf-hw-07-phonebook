@@ -11,6 +11,7 @@ import { selectError, selectIsLoading } from '../../redux/selectors';
 import { useEffect } from 'react';
 import { fetchContacts } from '../../redux/operations';
 import ErrorMessage from 'components/ErrorMessage';
+import Loader from 'components/Loader';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function App() {
 
   return (
     <Container>
-      {isLoading && <h1>Loading ...</h1>}
+      {isLoading && <Loader />}
       <ErrorMessage />
       {!errorMessage && <StyledMainTitle>Phonebook</StyledMainTitle>}
       <ContactForm />

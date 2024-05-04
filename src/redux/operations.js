@@ -1,10 +1,12 @@
+//IMPORT
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+//CONSTANTS
 import {
   addContactOperationType,
   deleteContactOperationType,
   fetchContactsOperationType,
 } from './constants';
-import axios from 'axios';
 
 axios.defaults.baseURL = 'https://6633ae1cf7d50bbd9b4a5132.mockapi.io';
 
@@ -22,10 +24,14 @@ export const fetchContacts = createAsyncThunk(
 
 export const addContact = createAsyncThunk(
   addContactOperationType,
-  async () => {
-    const response = await axios.post('/contacts');
-    console.log(response);
-    return response;
+
+  async data => {
+    try {
+      const response = await axios.post('/contacts', data);
+      return { ...data, id: response.data.id };
+    } catch (error) {
+      throw error;
+    }
   }
 );
 
