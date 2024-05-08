@@ -1,5 +1,10 @@
 //IMPORT
-import { createSlice, isPending, isRejected } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  isFulfilled,
+  isPending,
+  isRejected,
+} from '@reduxjs/toolkit';
 //SETTINGS
 import { INITIAL_STATE_APP } from 'settings/settings';
 //OPERATIONS
@@ -14,6 +19,10 @@ const handleRejected = (state, action) => {
   state.error = action.error.message;
 };
 
+const handleFullfilled = state => {
+  state.isLoading = false;
+};
+
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: INITIAL_STATE_APP.contacts,
@@ -22,20 +31,21 @@ const contactsSlice = createSlice({
     builder
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.items = action.payload;
-        state.isLoading = false;
       })
       .addCase(addContact.fulfilled, (state, action) => {
         state.items.push(action.payload);
-        state.isLoading = false;
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         const index = state.items.findIndex(({ id }) => id === action.payload);
         state.items.splice(index, 1);
-        state.isLoading = false;
       })
       .addMatcher(
         isPending(fetchContacts, addContact, deleteContact),
         handlePending
+      )
+      .addMatcher(
+        isFulfilled(fetchContacts, addContact, deleteContact),
+        handleFullfilled
       )
       .addMatcher(
         isRejected(fetchContacts, addContact, deleteContact),
